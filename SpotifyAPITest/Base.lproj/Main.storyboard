@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,228 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SpotifyAPITest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Nostic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnh-GV-msg">
+                                <rect key="frame" x="20" y="104" width="374" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SpotifyIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7zT-rw-0Pp">
+                                <rect key="frame" x="20" y="795" width="83" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="83" id="hNP-4n-Yae"/>
+                                    <constraint firstAttribute="height" constant="67" id="u4M-J9-KeO"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppleMusicIcon" translatesAutoresizingMaskIntoConstraints="NO" id="3qW-Gw-6JU">
+                                <rect key="frame" x="166" y="795" width="83" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="83" id="Ldu-ln-wGp"/>
+                                    <constraint firstAttribute="height" constant="67" id="swO-dR-sgG"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GooglePlayIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Njo-1C-knS">
+                                <rect key="frame" x="311" y="795" width="83" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="83" id="EUN-Bf-ycb"/>
+                                    <constraint firstAttribute="height" constant="67" id="r7v-kR-MGd"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXd-rQ-VSe">
+                                <rect key="frame" x="110" y="407" width="195" height="35"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="19"/>
+                                <state key="normal" title="Get Started">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="vYa-jX-CTo" kind="presentation" identifier="SelectService" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="7q2-Jo-iFQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The best way to share music with friends" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0Y-1c-F7a">
+                                <rect key="frame" x="20" y="226" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BXd-rQ-VSe" secondAttribute="trailing" constant="109" id="0Av-C9-NFp"/>
+                            <constraint firstItem="Pnh-GV-msg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="108-TQ-adn"/>
+                            <constraint firstItem="3qW-Gw-6JU" firstAttribute="leading" secondItem="7zT-rw-0Pp" secondAttribute="trailing" constant="63" id="2ga-vr-DiG"/>
+                            <constraint firstItem="BXd-rQ-VSe" firstAttribute="top" secondItem="U0Y-1c-F7a" secondAttribute="bottom" constant="160.5" id="3aQ-dX-BH1"/>
+                            <constraint firstItem="7zT-rw-0Pp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="42q-Z2-aBq"/>
+                            <constraint firstItem="7zT-rw-0Pp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Eb7-WU-dPF"/>
+                            <constraint firstItem="7zT-rw-0Pp" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="G3S-0O-PdM"/>
+                            <constraint firstItem="U0Y-1c-F7a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Hvp-63-cSZ"/>
+                            <constraint firstItem="BXd-rQ-VSe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="110" id="Nq4-d3-BI2"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="U0Y-1c-F7a" secondAttribute="trailing" constant="20" id="U5d-6v-KOa"/>
+                            <constraint firstItem="U0Y-1c-F7a" firstAttribute="top" secondItem="Pnh-GV-msg" secondAttribute="bottom" constant="74" id="Zmf-Ft-pNl"/>
+                            <constraint firstItem="Njo-1C-knS" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="d4B-PG-kzb"/>
+                            <constraint firstItem="7zT-rw-0Pp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="h6u-0V-K2x"/>
+                            <constraint firstItem="Pnh-GV-msg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="pWT-44-Uze"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Njo-1C-knS" secondAttribute="trailing" constant="20" id="qdg-vQ-Egw"/>
+                            <constraint firstItem="Njo-1C-knS" firstAttribute="leading" secondItem="3qW-Gw-6JU" secondAttribute="trailing" constant="62" id="qeN-Zt-0FS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pnh-GV-msg" secondAttribute="trailing" constant="20" id="v9a-30-QL7"/>
+                            <constraint firstItem="3qW-Gw-6JU" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="vOK-ls-53w"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="116.51785714285714"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="CFt-ua-ueg">
+            <objects>
+                <viewController id="vYa-jX-CTo" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BSl-aF-fCc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4C1-v8-NB3">
+                                <rect key="frame" x="104" y="261" width="206" height="92"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="vo7-6j-hbf"/>
+                                </constraints>
+                                <state key="normal" image="AppleMusicIconWithText"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PZ7-Q5-KEE">
+                                <rect key="frame" x="104" y="402" width="206" height="92"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="3jV-Qa-zLE"/>
+                                </constraints>
+                                <state key="normal" image="GooglePlayIconWithText"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8YT-Nr-1W3">
+                                <rect key="frame" x="104" y="547" width="206" height="92"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="92" id="la6-xw-7YU"/>
+                                </constraints>
+                                <state key="normal" image="SpotifyIconWithText"/>
+                                <connections>
+                                    <segue destination="tpQ-GC-g5Y" kind="presentation" modalPresentationStyle="fullScreen" id="epC-Rs-BfV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Your Streaming Service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvG-pc-Qi6">
+                                <rect key="frame" x="20" y="95" width="374" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="R5w-Wg-vOP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4UO-ce-frb" firstAttribute="trailing" secondItem="hvG-pc-Qi6" secondAttribute="trailing" constant="20" id="60B-0C-WJy"/>
+                            <constraint firstItem="hvG-pc-Qi6" firstAttribute="leading" secondItem="4UO-ce-frb" secondAttribute="leading" constant="20" id="7nj-qg-SrI"/>
+                            <constraint firstItem="4UO-ce-frb" firstAttribute="trailing" secondItem="hvG-pc-Qi6" secondAttribute="trailing" constant="20" id="BCp-pQ-te2"/>
+                            <constraint firstItem="8YT-Nr-1W3" firstAttribute="leading" secondItem="4UO-ce-frb" secondAttribute="leading" constant="104" id="Cds-1q-3nK"/>
+                            <constraint firstItem="PZ7-Q5-KEE" firstAttribute="leading" secondItem="4UO-ce-frb" secondAttribute="leading" constant="104" id="HjV-KU-Z9D"/>
+                            <constraint firstItem="hvG-pc-Qi6" firstAttribute="top" secondItem="4UO-ce-frb" secondAttribute="top" constant="51" id="J2e-Uv-aCK"/>
+                            <constraint firstItem="4UO-ce-frb" firstAttribute="trailing" secondItem="4C1-v8-NB3" secondAttribute="trailing" constant="104" id="NBM-fo-1MP"/>
+                            <constraint firstItem="8YT-Nr-1W3" firstAttribute="top" secondItem="PZ7-Q5-KEE" secondAttribute="bottom" constant="53" id="Pkx-ca-Vi5"/>
+                            <constraint firstItem="4UO-ce-frb" firstAttribute="trailing" secondItem="hvG-pc-Qi6" secondAttribute="trailing" constant="20" id="TbP-9r-dT2"/>
+                            <constraint firstItem="hvG-pc-Qi6" firstAttribute="leading" secondItem="4UO-ce-frb" secondAttribute="leading" constant="20" id="U8M-hU-Vtr"/>
+                            <constraint firstItem="4UO-ce-frb" firstAttribute="trailing" secondItem="PZ7-Q5-KEE" secondAttribute="trailing" constant="104" id="df5-rb-GOL"/>
+                            <constraint firstItem="hvG-pc-Qi6" firstAttribute="leading" secondItem="4UO-ce-frb" secondAttribute="leading" constant="20" id="hfw-7X-2n0"/>
+                            <constraint firstItem="PZ7-Q5-KEE" firstAttribute="top" secondItem="4C1-v8-NB3" secondAttribute="bottom" constant="49" id="qyo-Nh-WQ9"/>
+                            <constraint firstItem="4C1-v8-NB3" firstAttribute="leading" secondItem="4UO-ce-frb" secondAttribute="leading" constant="104" id="rsl-E5-kBc"/>
+                            <constraint firstItem="hvG-pc-Qi6" firstAttribute="top" secondItem="4UO-ce-frb" secondAttribute="top" constant="51" id="uzd-2s-tts"/>
+                            <constraint firstItem="hvG-pc-Qi6" firstAttribute="top" secondItem="4UO-ce-frb" secondAttribute="top" constant="51" id="waZ-gg-7gA"/>
+                            <constraint firstItem="4C1-v8-NB3" firstAttribute="top" secondItem="hvG-pc-Qi6" secondAttribute="bottom" constant="41" id="z2i-ad-uiA"/>
+                            <constraint firstItem="4UO-ce-frb" firstAttribute="trailing" secondItem="8YT-Nr-1W3" secondAttribute="trailing" constant="104" id="zh7-KE-dxV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4UO-ce-frb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="tsK-uu-YbX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o0k-No-gu1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="918.84057971014499" y="116.51785714285714"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="hO8-dG-ibQ">
+            <objects>
+                <viewController id="AB2-C4-vCH" customClass="HomeViewController" customModule="SpotifyAPITest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pnp-MH-T2B">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="VKJ-Zg-SgU"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Woh-fN-NfD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BJ7-Lc-Oxt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="439" y="-625"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="JcY-Gi-DHI">
+            <objects>
+                <viewController id="U4R-h4-iIa" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jKd-Sl-ZQ0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="qeJ-02-yfG"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="LZb-Az-voj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xci-yb-lyz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2598" y="573"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="fc0-0k-WPk">
+            <objects>
+                <viewController id="CDF-ac-rQl" customClass="HomeViewController" customModule="SpotifyAPITest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c2V-np-bB5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="G63-Yu-RF6"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="cM3-cK-0lX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zQY-Um-iRv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2598" y="-76"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="zlR-Yl-YYx">
+            <objects>
+                <tabBarController id="tpQ-GC-g5Y" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qmt-cS-cTP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="CDF-ac-rQl" kind="relationship" relationship="viewControllers" id="aoh-wn-Q3n"/>
+                        <segue destination="U4R-h4-iIa" kind="relationship" relationship="viewControllers" id="HaV-eX-yw8"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p5X-Gz-8cQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1691" y="117"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AppleMusicIcon" width="1024" height="1024"/>
+        <image name="AppleMusicIconWithText" width="1000" height="628"/>
+        <image name="GooglePlayIcon" width="1200" height="800"/>
+        <image name="GooglePlayIconWithText" width="291" height="173"/>
+        <image name="SpotifyIcon" width="225" height="225"/>
+        <image name="SpotifyIconWithText" width="800" height="429"/>
+    </resources>
 </document>
