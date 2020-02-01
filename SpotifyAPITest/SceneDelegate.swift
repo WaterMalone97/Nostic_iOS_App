@@ -47,6 +47,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        var requestedURL = String()
+        for val in URLContexts {
+            requestedURL = val.url.absoluteString
+        }
+        if (requestedURL.contains("nostic://callback")) {
+            let id = requestedURL.index(requestedURL.startIndex, offsetBy: 18)
+            let string = requestedURL.suffix(from: id)
+            
+            //This is pretty jank, but it will work for now
+            let tabBarController = UIApplication.shared.windows[0].rootViewController as! TabBarController
+            let homeViewController = tabBarController.homeViewController as! HomeViewController
+            let loginViewController = homeViewController.loginViewController as! LoginViewController
+//            let loginViewController = viewController.viewControllers![0] as! LoginViewController
+            loginViewController.dismissSafari(userName: String(string))
+        }
+    }
 
 
 }

@@ -7,39 +7,26 @@
 //
 
 import UIKit
-import WebKit
-let ipAddress = "192.168.1.106:8080"
 
-class HomeViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
-    var webView: WKWebView!
-    override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.uiDelegate = self
-        view = webView
-    }
-
-    override func viewDidLoad() {
-        webView.navigationDelegate = self
-        let myURL = URL(string: "http://" + ipAddress + "/users/login")
-        let myRequest = URLRequest(url: myURL!)
-        webView.load(myRequest)
-        self.tabBarController?.tabBar.isHidden = true
-        super.viewDidLoad()
-    }
-
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.url {
-            if url.absoluteString.contains("users/callback") {
-                decisionHandler(.cancel)
-                print("Attempting to close view")
-                self.tabBarController?.tabBar.isHidden = false
-                webView.removeFromSuperview()
-                return
-            }
-            else {
-                decisionHandler(.allow)
-            }
+class HomeViewController: UIViewController {
+    @IBOutlet weak var welcomeLabel: UILabel!
+    var loginViewController: Any!
+    var userLoggedIn = String()
+    var userId = String()
+    override func viewDidAppear(_ animated: Bool) {
+        if (userLoggedIn == "false" || userLoggedIn == "") {
+            performSegue(withIdentifier: "LoginRequest", sender: self)
+            userLoggedIn = "true"
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "LoginRequest") {
+            loginViewController = segue.destination as! LoginViewController
+        }
+    }
+    override func viewDidLoad() {
+        welcomeLabel.text = "Welcome \(userId)"
+        super.viewDidLoad()
     }
 }
