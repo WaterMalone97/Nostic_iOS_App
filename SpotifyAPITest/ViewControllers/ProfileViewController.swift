@@ -1,27 +1,19 @@
 //
-//  TabBarController.swift
+//  ProfileViewController.swift
 //  SpotifyAPITest
 //
-//  Created by Ryan Malone on 1/30/20.
+//  Created by Ryan Malone on 1/29/20.
 //  Copyright © 2020 Ryan Malone. All rights reserved.
 //
 
 import UIKit
 
-class TabBarController: UITabBarController {
-    var homeViewController: HomeViewController!
-    var userId = ""
-    var userLoggedIn = "false"
+class ProfileViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        homeViewController = self.children[0] as? HomeViewController
-        homeViewController.userId = self.userId
-        homeViewController.userLoggedIn = self.userLoggedIn
-        homeViewController.viewDidLoad()
     }
     
 
