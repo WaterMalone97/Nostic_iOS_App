@@ -55,14 +55,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         if (requestedURL.contains("nostic://callback")) {
             let id = requestedURL.index(requestedURL.startIndex, offsetBy: 18)
-            let string = requestedURL.suffix(from: id)
+            let userId = requestedURL.suffix(from: id)
             
-            //This is pretty jank, but it will work for now
-            let tabBarController = UIApplication.shared.windows[0].rootViewController as! TabBarController
-            let homeViewController = tabBarController.homeViewController as! HomeViewController
+            let logInViewController = LoginViewController()
+            logInViewController.userId = String(userId)
+            
+//            // Access the storyboard and fetch an instance of the view controller
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil);
+//            let viewController: HomeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController;
+//            viewController.userId = String(userId)
+            // Then push that view controller onto the navigation stack
+            let tabBarController = self.window!.rootViewController as! UITabBarController;
+            let homeViewController = tabBarController.viewControllers![0] as! HomeViewController
             let loginViewController = homeViewController.loginViewController as! LoginViewController
-//            let loginViewController = viewController.viewControllers![0] as! LoginViewController
-            loginViewController.dismissSafari(userName: String(string))
+            loginViewController.dismissSafari(userName: String(userId))
+            
+            //loginViewController.performSegue(withIdentifier: "LoginSuccess", sender: nil)
+            
+            
+//            //This is pretty jank, but it will work for now
+//            let tabBarController = UIApplication.shared.windows[0].rootViewController as! TabBarController
+//            let homeViewController = tabBarController.homeViewController as! HomeViewController
+//            let loginViewController = homeViewController.loginViewController as! LoginViewController
+////            let loginViewController = viewController.viewControllers![0] as! LoginViewController
+//            loginViewController.dismissSafari(userName: String(string))
         }
     }
 

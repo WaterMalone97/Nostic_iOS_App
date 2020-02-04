@@ -73,7 +73,7 @@
         <!--Home-->
         <scene sceneID="fc0-0k-WPk">
             <objects>
-                <viewController id="CDF-ac-rQl" customClass="HomeViewController" customModule="SpotifyAPITest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="CDF-ac-rQl" customClass="HomeViewController" customModule="SpotifyAPITest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c2V-np-bB5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -84,14 +84,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CSR-Xw-f1y">
-                                <rect key="frame" x="115" y="493" width="145" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="xEK-cw-p8y" kind="presentation" modalPresentationStyle="fullScreen" id="voc-N9-WWl"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -115,20 +107,10 @@
             </objects>
             <point key="canvasLocation" x="2189.5999999999999" y="-379.06403940886702"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="fFa-zS-Z70">
-            <objects>
-                <viewController id="xEK-cw-p8y" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="jX9-T1-bgw"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EcE-2D-fbo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3014" y="-379"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zlR-Yl-YYx">
             <objects>
-                <tabBarController id="tpQ-GC-g5Y" customClass="TabBarController" customModule="SpotifyAPITest" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="tpQ-GC-g5Y" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Qmt-cS-cTP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

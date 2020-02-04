@@ -19,19 +19,20 @@ class UserService {
         userBaseURL = URL(string: "http://\(address)/users")
     }
     
-    func login (completion: @escaping(UserInfo?) -> Void) {
-        if let loginURL = URL(string: "\(userBaseURL!)/login") {
-            print(loginURL)
-            let networkProcessor = NetworkProcessor(url: loginURL)
-            networkProcessor.downloadJSONFromURL({ (jsonDictionary) in
-                print(jsonDictionary!)
-                if let currentUserDictionary = jsonDictionary?["body"] as?[String : Any] {
-                    let userInfo = UserInfo(userDictionary: currentUserDictionary)
-                    completion(userInfo)
-                } else {
-                    completion(nil)
-                }
-            })
-        }
+    func getInfo (id: String, completion: @escaping(UserInfo?) -> Void) {
+        var infoURL = URLComponents(string: "\(userBaseURL!)/info")!
+        infoURL.queryItems = [
+            URLQueryItem(name: "id", value: id)
+        ]
+        let networkProcessor = NetworkProcessor(url: infoURL.url!)
+        networkProcessor.downloadJSONFromURL({ (jsonDictionary) in
+            print(jsonDictionary!)
+            if let currentUserDictionary = jsonDictionary {
+                let userInfo = UserInfo(userDictionary: currentUserDictionary)
+                completion(userInfo)
+            } else {
+                completion(nil)
+            }
+        })
     }
 }

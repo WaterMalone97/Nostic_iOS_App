@@ -23,9 +23,10 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "LoginSuccess") {
-            let tabBarController = segue.destination as! TabBarController
-            tabBarController.userId = userId
-            tabBarController.userLoggedIn = "true"
+            let tabBarController = segue.destination as! UITabBarController
+            let homeViewController = tabBarController.viewControllers![0] as! HomeViewController
+            homeViewController.userId = userId
+            homeViewController.userLoggedInTemp = "true"
         }
     }
     
