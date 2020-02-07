@@ -25,8 +25,8 @@ class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
         if (segue.identifier == "LoginSuccess") {
             let tabBarController = segue.destination as! UITabBarController
             let homeViewController = tabBarController.viewControllers![0] as! HomeViewController
-            homeViewController.userId = userId
-            homeViewController.userLoggedInTemp = "true"
+            homeViewController.defaults.set(userId, forKey: defaultsKeys.userId)
+            homeViewController.defaults.set("true", forKey: defaultsKeys.userLoggedIn)
         }
     }
     
