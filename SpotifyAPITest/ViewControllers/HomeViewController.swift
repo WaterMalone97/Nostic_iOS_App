@@ -11,10 +11,25 @@ import UIKit
 struct defaultsKeys {
     static let userLoggedIn = "userLoggedIn"
     static let userId = "userId"
+    static let address = "address"
+    static let useHttps = "useHttps"
+    static let useLocalIp = "useLocalIp"
+    static let localIp = "localIp"
 }
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
     @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var welcomeLabel: UILabel!
+    var userHelper = UserHelper()
+    var searchResults: [SongInfo] = []
+    var loginViewController: Any!
+    var userLoggedInTemp = String()
+    var userId = String()
+    var albumArt = UIImage()
+    let defaults = UserDefaults.standard
+    var userService: UserService?
+    var songService: SongService?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.searchResults.count
@@ -49,19 +64,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         return cell
     }
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var welcomeLabel: UILabel!
-    var userHelper = UserHelper()
-    var searchResults: [SongInfo] = []
-    var loginViewController: Any!
-    var userLoggedInTemp = String()
-    var userId = String()
-    var albumArt = UIImage()
-    let defaults = UserDefaults.standard
-    let userService = UserService(address: "192.168.1.106:8080")
-    let songService = SongService(address: "192.168.1.106:8080")
-    
     override func viewWillAppear(_ animated: Bool) {
+        print("Setting address to: \(address)")
+        self.songService = SongService(address: address)
+        self.userService = UserService(address: address)
         if let userLoggedIn = defaults.string(forKey: defaultsKeys.userLoggedIn) {
             userLoggedInTemp = userLoggedIn
             if (userLoggedInTemp == "true") {
@@ -106,31 +112,34 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 }
                 playerView.songURI = songInfo.uri!
                 if let userInfo = self.userHelper.userInfo {
-                    if let access_token = userInfo.accessToken {
-                        playerView.access_token = access_token
+                    if let id = userInfo.id {
+                        playerView.id = id
                     }
                 }
             }
         }
+        else if (segue.identifier == "DevSettings") {
+            let devSettings = segue.destination as! DeveloperSettingsViewController
+            devSettings.defaults = self.defaults
+            devSettings.homeViewController = self
+        }
     }
+    
     override func viewDidLoad() {
         if (userLoggedInTemp == "true") {
             if let userInfo = userHelper.userInfo {
                 if let displayName = userInfo.displayName {
-                    self.welcomeLabel.text = "Welcome \(String(displayName))"
+                    print("Welcome \(String(displayName))")
                 }
             }
             else {
                 // Only make an API call if we don't already have the userInfo
-                userService.getInfo(id: userId){
+                userService!.getInfo(id: userId){
                     (userInfo) in
                     if let userInfo = userInfo {
                         DispatchQueue.main.async {
                             self.userHelper.userInfo = userInfo
                             print("userINFO: ", self.userHelper.userInfo!)
-                            if let displayName = self.userHelper.userInfo.displayName {
-                                self.welcomeLabel.text = "Welcome \(String(displayName))"
-                            }
                         }
                     }
                 }
@@ -144,7 +153,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("Return Pressed")
-        self.searchResults = [] 
+        self.searchResults = [] 
         var searchString: String!
         if let search = textField.text {
             searchString = search
@@ -152,13 +161,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         else {
             searchString = ""
         }
-        var accessToken: String!
-        if let userInfo = self.userHelper.userInfo {
-            if let access_token = userInfo.accessToken {
-                accessToken = access_token
-            }
-        }
-        songService.search(searchString: searchString, access_token: accessToken) {
+        songService!.search(searchString: searchString, id: userId) {
             (songInfo) in
             if let songInfo = songInfo {
                 DispatchQueue.main.async {
@@ -167,6 +170,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                 }
             }
         }
+        //dismiss the keyboard (for now)
+        //textField.endEditing(true)
         return false
     }
     

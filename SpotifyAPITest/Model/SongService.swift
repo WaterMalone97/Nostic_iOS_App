@@ -10,17 +10,17 @@ import Foundation
 
 class SongService {
     let baseAddress: String
-    let userBaseURL: URL?
+    let songBaseURL: URL?
     
     init(address: String) {
         self.baseAddress = address
-        userBaseURL = URL(string: "http://\(address)/songs")
+        songBaseURL = URL(string: "\(address)/songs")
     }
     
-    func play(access_token: String, uri: String) -> Bool {
-        var playURL = URLComponents(string: "\(userBaseURL!)/play")!
+    func play(id: String, uri: String) -> Bool {
+        var playURL = URLComponents(string: "\(songBaseURL!)/play")!
         playURL.queryItems = [
-            URLQueryItem(name: "access_token", value: access_token),
+            URLQueryItem(name: "id", value: id),
             URLQueryItem(name: "uri", value: uri)
         ]
         let networkProcessor = NetworkProcessor(url: playURL.url!)
@@ -30,10 +30,10 @@ class SongService {
         return true
     }
     
-    func search(searchString: String, access_token: String, completion: @escaping(SongInfo?) -> Void) {
-        var searchURL = URLComponents(string: "\(userBaseURL!)/search")!
+    func search(searchString: String, id: String, completion: @escaping(SongInfo?) -> Void) {
+        var searchURL = URLComponents(string: "\(songBaseURL!)/search")!
         searchURL.queryItems = [
-            URLQueryItem(name: "access_token", value: access_token),
+            URLQueryItem(name: "id", value: id),
             URLQueryItem(name: "searchString", value: searchString)
         ]
         let networkProcessor = NetworkProcessor(url: searchURL.url!)

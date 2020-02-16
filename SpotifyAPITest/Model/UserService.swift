@@ -16,7 +16,27 @@ class UserService {
     
     init(address: String) {
         self.baseAddress = address
-        userBaseURL = URL(string: "http://\(address)/users")
+        userBaseURL = URL(string: "\(address)/users")
+    }
+    
+    func getLibrary(id: String, completion: @escaping([SongInfo]?) -> Void) {
+        var libraryUrl = URLComponents(string: "\(userBaseURL!)/library")!
+        libraryUrl.queryItems = [
+            URLQueryItem(name: "id", value: id)
+        ]
+        let networkProcessor = NetworkProcessor(url: libraryUrl.url!)
+        networkProcessor.downloadJSONFromURL({ (jsonDictionary) in
+            if let library = jsonDictionary {
+                var songInfoArray = [SongInfo]()
+                let songs = library["Songs"] as! NSArray
+                for song in songs {
+                    songInfoArray.append(SongInfo(songDictionary: song as! [String : Any]))
+                }
+                completion(songInfoArray)
+            } else {
+                completion(nil)
+            }
+        })
     }
     
     func getInfo (id: String, completion: @escaping(UserInfo?) -> Void) {

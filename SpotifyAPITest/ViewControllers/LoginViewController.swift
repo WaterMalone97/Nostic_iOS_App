@@ -8,11 +8,10 @@
 
 import UIKit
 import SafariServices
-let ipAddress = "192.168.1.106:8080"
 
 class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
     var userId = String()
-    let url = NSURL(string: "http://\(ipAddress)/users/login")
+    let url = NSURL(string: "\(address)/users/login")
     var vc: AnyObject?
     @IBOutlet weak var loginButton: UIButton!
     @IBAction func loginButton(_ sender: Any) {

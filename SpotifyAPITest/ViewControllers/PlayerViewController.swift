@@ -11,8 +11,8 @@ import UIKit
 class PlayerViewController: UIViewController {
     
     var songURI = String()
-    let songService = SongService(address: "192.168.1.106:8080")
-    var access_token = String()
+    let songService = SongService(address: address)
+    var id = String()
     
     @IBAction func playPauseButton(_ sender: Any) {
     }
@@ -20,7 +20,7 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var albumArt: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        songService.play(access_token: self.access_token, uri: self.songURI)
+        songService.play(id: self.id, uri: self.songURI)
         // Do any additional setup after loading the view.
     }
     
