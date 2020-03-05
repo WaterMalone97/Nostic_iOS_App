@@ -28,6 +28,9 @@
 		6BC21F0923F8657100931844 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC21F0823F8657100931844 /* ProfileViewController.swift */; };
 		6BC21F0B23F8689F00931844 /* ProfileCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC21F0A23F8689F00931844 /* ProfileCellCollectionViewCell.swift */; };
 		6BC21F0D23F8788600931844 /* DeveloperSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC21F0C23F8788600931844 /* DeveloperSettingsViewController.swift */; };
+		6BC21F11240C0CEC00931844 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC21F10240C0CEC00931844 /* FeedViewController.swift */; };
+		6BC21F13240C0D7300931844 /* FollowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC21F12240C0D7300931844 /* FollowService.swift */; };
+		6BC21F15240C115300931844 /* SongFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC21F14240C115300931844 /* SongFeedCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		6BC21F0823F8657100931844 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6BC21F0A23F8689F00931844 /* ProfileCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		6BC21F0C23F8788600931844 /* DeveloperSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperSettingsViewController.swift; sourceTree = "<group>"; };
+		6BC21F10240C0CEC00931844 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		6BC21F12240C0D7300931844 /* FollowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowService.swift; sourceTree = "<group>"; };
+		6BC21F14240C115300931844 /* SongFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongFeedCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 				6B2345A523EBB9A400B9F833 /* PlayerViewController.swift */,
 				6BC21F0823F8657100931844 /* ProfileViewController.swift */,
 				6BC21F0C23F8788600931844 /* DeveloperSettingsViewController.swift */,
+				6BC21F10240C0CEC00931844 /* FeedViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -122,6 +129,7 @@
 				6B23459323E1124C00B9F833 /* UserInfo.swift */,
 				6B2345A123EA5B1200B9F833 /* SongService.swift */,
 				6B2345A323EA5CE800B9F833 /* SongInfo.swift */,
+				6BC21F12240C0D7300931844 /* FollowService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -139,6 +147,7 @@
 			children = (
 				6B23459F23EA511400B9F833 /* SongSearchCell.swift */,
 				6BC21F0A23F8689F00931844 /* ProfileCellCollectionViewCell.swift */,
+				6BC21F14240C115300931844 /* SongFeedCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -331,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B2345A223EA5B1200B9F833 /* SongService.swift in Sources */,
+				6BC21F15240C115300931844 /* SongFeedCell.swift in Sources */,
 				6B2345A423EA5CE800B9F833 /* SongInfo.swift in Sources */,
 				6B23459623E1243A00B9F833 /* LoginViewController.swift in Sources */,
 				6B23459223E1114D00B9F833 /* UserService.swift in Sources */,
@@ -339,8 +349,10 @@
 				6BC21F0D23F8788600931844 /* DeveloperSettingsViewController.swift in Sources */,
 				6B2345A623EBB9A400B9F833 /* PlayerViewController.swift in Sources */,
 				6BC21F0B23F8689F00931844 /* ProfileCellCollectionViewCell.swift in Sources */,
+				6BC21F11240C0CEC00931844 /* FeedViewController.swift in Sources */,
 				6BC21F0723F249FA00931844 /* Variables.swift in Sources */,
 				6B23458B23D00E2900B9F833 /* HomeViewController.swift in Sources */,
+				6BC21F13240C0D7300931844 /* FollowService.swift in Sources */,
 				6B2345A023EA511400B9F833 /* SongSearchCell.swift in Sources */,
 				6B23459423E1124C00B9F833 /* UserInfo.swift in Sources */,
 				6B23459023E10D9B00B9F833 /* NetworkProcessor.swift in Sources */,

@@ -10,17 +10,24 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     
+    let defaults = UserDefaults.standard
     var songURI = String()
-    let songService = SongService(address: address)
+    var songId = String()
+    var songService: SongService?
     var id = String()
+    @IBAction func shareButton(_ sender: Any) {
+        songService?.share(songId: self.songId, id: self.id)
+    }
     
     @IBAction func playPauseButton(_ sender: Any) {
     }
     
     @IBOutlet weak var albumArt: UIImageView!
     override func viewDidLoad() {
+        self.id = defaults.string(forKey: defaultsKeys.userId)!
+        songService = SongService(address: address)
         super.viewDidLoad()
-        songService.play(id: self.id, uri: self.songURI)
+        songService!.play(id: self.id, uri: self.songURI)
         // Do any additional setup after loading the view.
     }
     

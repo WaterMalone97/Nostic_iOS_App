@@ -16,6 +16,9 @@ class DeveloperSettingsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var useHttpsToggle: UISwitch!
     @IBAction func useLocalIP(_ sender: Any) {
         defaults?.set(useLocalIPToggle.isOn, forKey: defaultsKeys.useLocalIp)
+        if (!useLocalIPToggle.isOn) {
+            defaults?.set(hostedAddress, forKey: defaultsKeys.currentAddress)
+        }
         self.viewDidLoad()
     }
     @IBAction func useHttps(_ sender: Any) {
@@ -62,6 +65,7 @@ class DeveloperSettingsViewController: UIViewController, UITextFieldDelegate {
             address = hostedAddress
         }
         defaults?.set(address, forKey: defaultsKeys.address)
+        defaults?.set(address, forKey: defaultsKeys.currentAddress)
         homeViewController?.viewWillAppear(true)
         super.viewDidLoad()
         self.localIPTextField.delegate = self

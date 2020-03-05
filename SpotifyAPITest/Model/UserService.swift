@@ -20,22 +20,19 @@ class UserService {
     }
     
     func getLibrary(id: String, completion: @escaping([SongInfo]?) -> Void) {
-        var libraryUrl = URLComponents(string: "\(userBaseURL!)/library")!
+        var libraryUrl = URLComponents(string: "\(userBaseURL!)/get-library")!
+        print(libraryUrl)
         libraryUrl.queryItems = [
             URLQueryItem(name: "id", value: id)
         ]
         let networkProcessor = NetworkProcessor(url: libraryUrl.url!)
-        networkProcessor.downloadJSONFromURL({ (jsonDictionary) in
-            if let library = jsonDictionary {
-                var songInfoArray = [SongInfo]()
-                let songs = library["Songs"] as! NSArray
-                for song in songs {
-                    songInfoArray.append(SongInfo(songDictionary: song as! [String : Any]))
-                }
-                completion(songInfoArray)
-            } else {
-                completion(nil)
+        networkProcessor.downloadJSONArrayFromURL({ (songs) in
+            var results = [SongInfo]()
+            for song in songs {
+                let songInfo = SongInfo(songDictionary: song as! [String : Any])
+                results.append(songInfo)
             }
+            completion(results)
         })
     }
     

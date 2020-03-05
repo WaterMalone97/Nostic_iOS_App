@@ -17,6 +17,7 @@ class SongInfo {
     let trackName: String?
     var albumArtUrl: String?
     let album: String?
+    let id: String?
     
     struct SongKeys {
         static let uri = "uri"
@@ -24,6 +25,7 @@ class SongInfo {
         static let name = "name"
         static let images = "images"
         static let album = "album"
+        static let id = "id"
     }
     
     init (songDictionary: [String: Any]) {
@@ -50,6 +52,14 @@ class SongInfo {
         let images = album[SongKeys.images] as! NSArray
         let image = images[0] as? NSDictionary
         self.albumArtUrl = (image?["url"] as? String)!
+        
+        let id = songDictionary[SongKeys.id]
+        if let id = id {
+            self.id = id as? String
+        }
+        else {
+            self.id = nil
+        }
     }
     
 }

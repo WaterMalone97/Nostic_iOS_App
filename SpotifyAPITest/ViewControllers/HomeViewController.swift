@@ -15,6 +15,7 @@ struct defaultsKeys {
     static let useHttps = "useHttps"
     static let useLocalIp = "useLocalIp"
     static let localIp = "localIp"
+    static let currentAddress = "currentAddress"
 }
 
 class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
@@ -28,6 +29,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     var userId = String()
     var albumArt = UIImage()
     let defaults = UserDefaults.standard
+    var currentAddress: String?
     var userService: UserService?
     var songService: SongService?
     
@@ -55,7 +57,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         self.getData(from: url!) { data, response, error in
             guard let data = data, error == nil else { return }
             print(response?.suggestedFilename ?? url!.lastPathComponent)
-            print("Download Finished")
             DispatchQueue.main.async() {
                 self.albumArt = UIImage(data: data)!
                 cell.albumCover.image = UIImage(data: data)
@@ -65,9 +66,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Setting address to: \(address)")
-        self.songService = SongService(address: address)
-        self.userService = UserService(address: address)
+        if (address != currentAddress) {
+            self.songService = SongService(address: address)
+            self.userService = UserService(address: address)
+            currentAddress = address
+        }
         if let userLoggedIn = defaults.string(forKey: defaultsKeys.userLoggedIn) {
             userLoggedInTemp = userLoggedIn
             if (userLoggedInTemp == "true") {
@@ -111,11 +114,12 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                     }
                 }
                 playerView.songURI = songInfo.uri!
-                if let userInfo = self.userHelper.userInfo {
-                    if let id = userInfo.id {
-                        playerView.id = id
-                    }
-                }
+                playerView.songId = songInfo.id!
+//                if let userInfo = self.userHelper.userInfo {
+//                    if let id = userInfo.id {
+//                        playerView.id = id
+//                    }
+//                }
             }
         }
         else if (segue.identifier == "DevSettings") {
@@ -144,6 +148,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
                     }
                 }
             }
+//            let profileView = self.tabBarController?.viewControllers![1] as! ProfileViewController
+//            profileView.userInfo = userHelper.userInfo
         }
         super.viewDidLoad()
         self.collectionView.delegate = self
@@ -153,7 +159,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("Return Pressed")
-        self.searchResults = [] 
+        self.searchResults = []
         var searchString: String!
         if let search = textField.text {
             searchString = search
@@ -163,15 +169,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         songService!.search(searchString: searchString, id: userId) {
             (songInfo) in
-            if let songInfo = songInfo {
-                DispatchQueue.main.async {
-                    self.searchResults.append(songInfo)
-                    self.collectionView.reloadData()
-                }
+            DispatchQueue.main.async {
+                self.searchResults = songInfo as! [SongInfo]
+                self.collectionView.reloadData()
             }
         }
         //dismiss the keyboard (for now)
-        //textField.endEditing(true)
+        self.searchField.endEditing(true)
         return false
     }
     

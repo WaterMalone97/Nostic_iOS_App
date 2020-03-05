@@ -16,6 +16,50 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBAction func segmentedButton(_ sender: Any) {
     }
     @IBOutlet weak var collectionView: UICollectionView!
+    var userService: UserService?
+    var userInfo: UserInfo?
+    var currentAddress: String?
+    let defaults = UserDefaults.standard
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "PlaySong") {
+            let playerView = segue.destination as! PlayerViewController
+             if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell){
+                let songInfo = self.songs[indexPath.row]
+                let url = URL(string: songInfo.albumArtUrl!)
+                self.getData(from: url!) { data, response, error in
+                    guard let data = data, error == nil else { return }
+                    print(response?.suggestedFilename ?? url!.lastPathComponent)
+                    print("Download Finished")
+                    DispatchQueue.main.async() {
+                        playerView.albumArt.image = UIImage(data: data)!
+                    }
+                }
+                playerView.songURI = songInfo.uri!
+                //playerView.id = "musicman5385"
+                playerView.songId = songInfo.id!
+//                if let userInfo = self.userHelper.userInfo {
+//                    if let id = userInfo.id {
+//                        playerView.id = id
+//                    }
+//                }
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        userService = UserService(address: address)
+//        if (songs.count == 0) {
+        userService!.getLibrary(id: defaults.string(forKey: defaultsKeys.userId)!) {
+            (songList) in
+            DispatchQueue.main.async {
+                self.songs = songList!
+                self.collectionView.reloadData()
+            }
+        }
+        //}
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self
@@ -39,7 +83,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     }
    
    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Result", for: indexPath) as! ProfileCellCollectionViewCell
+       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Song", for: indexPath) as! ProfileCellCollectionViewCell
        let songInfo = self.songs[indexPath.row]
        cell.artistLabel.text = songInfo.artist
        cell.songTitleLabel.text = songInfo.trackName

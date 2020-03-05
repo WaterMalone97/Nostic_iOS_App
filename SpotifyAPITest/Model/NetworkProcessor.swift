@@ -39,4 +39,28 @@ class NetworkProcessor {
         }
     dataTask.resume()
     }
+    
+    func downloadJSONArrayFromURL(_ completion: @escaping (NSArray) -> ()) {
+        var songs: NSArray?
+        let request = URLRequest(url: self.url)
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            if error == nil {
+                if let httpResponse = response as? HTTPURLResponse {
+                    //assume success for now
+                    if let data = data {
+                        do {
+                            songs = try JSONSerialization.jsonObject(with: data, options: []) as? NSArray
+                            completion(songs ?? [])
+                        } catch let error as NSError {
+                            print("Error processing JSON data: \(error.localizedDescription)")
+                        }
+                    }
+                }
+                else {
+                    print("Request Error :(")
+                }
+            }
+        }
+        dataTask.resume()
+    }
 }
